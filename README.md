@@ -1,2 +1,1 @@
-# quimica-webII
- TRABALHO DE WEB USANDO DJANGO PARA MOSTRAR DADOS EM DASHBOARD
+## sistema de gerenciamente de  quimicos
