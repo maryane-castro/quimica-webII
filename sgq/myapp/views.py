@@ -15,9 +15,6 @@ def index(request):
 
 
 
-
-
-
 def new_exp_pratico():
     pass
 

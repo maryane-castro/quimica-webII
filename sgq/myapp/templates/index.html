@@ -11,12 +11,12 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
   </head>
-
-
-
-
   <body>
+
     
+    <header>
+      <p>Tico e Teco</p>
+    </header>
 
 
     <div>
@@ -29,35 +29,6 @@
 
 
         <script>
-
-            const ctx = document.getElementById('myChart');
-
-            new Chart(ctx, {
-              type: 'line',
-              data: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                  label: 'pratico',
-                  data: [12, 19, 3, 5, 2, 3],
-                  borderWidth: 1
-                },
-
-
-                {
-                  label: 'teorico',
-                  data: [89, 30, 3, 5, 1, 3],
-                  borderWidth: 1
-                }
-              ]
-              },
-              options: {
-                scales: {
-                  y: {
-                    beginAtZero: true
-                  }
-                }
-              }
-            });
         </script>
        
 
@@ -67,67 +38,3 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-<!DOCTYPE html>
-<html lang="pt-bt">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
-    <title>Document</title>
-
-</head>
-<body>
-
-
-
-
-    <div><canvas id="myChart"></canvas></div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      
-    
-
-
-    <script src="{% static 'js/index.js' %}"></script>
-</body>
-</html>
--->
