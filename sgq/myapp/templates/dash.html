@@ -1,10 +1,14 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="{% static 'css/dashboard.css' %}" rel="stylesheet">
+
     <style>
         body{
             background-color: #C9C9C9;
@@ -30,8 +34,7 @@
         #title{
             display: flex;
             justify-content: center;
-            align-items: center;
-
+            
             height: 75vh;
             width: 67vh;
             background-color: #FF8686;
@@ -39,11 +42,25 @@
             font-size: 2.5em;
             color: white;
             border-radius: 10px 0 0 10px;
+            text-align: center;
+            
+        }
+
+        #opcoes > button{
+            width: 8vw;
+            height: 5vh;
+            margin-bottom: 2vh;
+
+
+            background-color: #D9D9D9;
+            border-radius: 10px;
+            color: #000;
         }
 
 
 
-        #login{
+
+        #dash{
             display: flex;
             justify-content: center;
             align-items: center;
@@ -53,35 +70,12 @@
             border-radius: 0 10px 10px 0;
             text-align: center;
         }
+        
 
-        #butao{
-            margin-top: 10%;
-            margin-bottom: 10%;
-        }
 
-        #butao > button{
-            background-color: #FF8686;
-            width: 13vw;
-            height: 7vh;
-            border-radius: 18px;
-            color: white;
-            font-size: 1.5em;
-        }
+        
 
-        #link{
-            margin-top: 40%;
-        }
 
-        #link > a{
-            color: black;
-        }
-
-        input{
-            padding: 8px;
-            font-size: 16px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
 
 
     </style>
@@ -92,30 +86,57 @@
     <main>
         <div class="main">
             <div id="title">
-                <h1>Login</h1>
-            </div>
-            <div id="login">
                 <div>
-                    <h3>User</h3>
-                    <input type="text" name="" id="">
-                    <h3>Password</h3>
-                    <input type="password" name="" id="">
+                    <p style="margin-top: 15vh;">Menu</p>
+                    <div id="opcoes">
+                        <button style="display: block;">Add Pratico</button>
+                        <button style="display: block;">Remove Pratico</button>
 
-
-                    <div id="butao">
-                        <button>Login</button>
-                    </div>
-
-                    <div id="link">
-                        <a href="#">Cadastrar</a>
+                        <button style="display: block;">Add Teoria</button>
+                        <button style="display: block;">Remove Teoria</button>
                     </div>
                 </div>
+                
+                
+            </div>
+            <div id="dash">
+              <div>
+                <canvas id="myChart" width="700" height="300"></canvas>
+              </div>
             </div>
         </div>
     </main>
 
 
 
-
+    <script src="{% static 'js/dashboard.js' %}" ></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

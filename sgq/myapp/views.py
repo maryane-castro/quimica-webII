@@ -4,10 +4,16 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 
 
+def login(request):
+    return render(request, 'login.html')
 
 
-def index(request):
-    return render(request, 'index.html')
+def cadastro(request):
+    return render(request, 'cadastro.html')
+
+
+def dash(request):
+    return render(request, 'dash.html')
 
 
 
