@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
-
+from models import Aluno, Experimento_Pratico, Experimento_Teorico
 
 
 
@@ -12,8 +12,9 @@ def cadastro(request):
     return render(request, 'cadastro.html')
 
 
-def dash(request):
-    return render(request, 'dash.html')
+def dash(request): 
+    x = Aluno.objects.all()   
+    return render(request, 'dash.html', {'aluno' : x})
 
 
 
