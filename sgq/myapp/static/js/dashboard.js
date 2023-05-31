@@ -2,6 +2,7 @@
 (function () {
   'use strict'
 
+
   const data = {
     datasets: [{
       label: 'Scatter Dataset',
