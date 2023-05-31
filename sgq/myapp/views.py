@@ -13,7 +13,7 @@ def dash(request):
         x.append(c.concentracao_t)
 
 
-    return render(request, 'dash.html', {'tempo' : y, 'concen' : x})
+    return render(request, 'dash.html', {'y' : y, 'x' : x})
 
 
 

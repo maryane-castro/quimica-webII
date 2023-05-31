@@ -4,17 +4,17 @@
 
 
 
+const x = [0, 10, 50, 60, 70, 40, 80]
+const y = [15, 32, 54, 78, 10, 50]
+
 const labels = y;
 const data = {
   labels: labels,
   datasets: [
     {
-      label: 'Teorico',
+      label: 'Dataset 1',
       data: x,
-    },
-    {
-      label: 'Teorico',
-      data: [12, 32, 190, 2344],  //teste
+    
     },
   
   ]
@@ -128,6 +128,8 @@ new Chart(ctx, {
     }
   });
 })()*/
+
+
 
 
 
