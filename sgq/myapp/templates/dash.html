@@ -100,16 +100,26 @@
                 
             </div>
             <div id="dash">
-              <div>
-                <canvas id="myChart" width="700" height="300"></canvas>
-              </div>
+                <div>
+                    <div>
+                        <h1>Dashboard ...</h1>
+                        <canvas id="myChart" width="700" height="300"></canvas>
+                      </div>
+                </div>
+              
             </div>
         </div>
     </main>
 
 
-
+    {{ tempo }}
+    <script>
+        x = {{x}}
+        y = {{y}}
+    </script>
     <script src="{% static 'js/dashboard.js' %}" ></script>
+    
+    
 </body>
 </html>
 
