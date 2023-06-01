@@ -12,6 +12,9 @@ def dash(request):
         y.append(round(tempo, 3))
         x.append(c.concentracao_t)
 
+    value_pratico = Experimento_Pratico.objects.all()
+    for c in value_pratico:
+        pass
 
     return render(request, 'dash.html', {'y' : y, 'x' : x})
 
