@@ -3,6 +3,20 @@
 //----------------
 
 
+const actions = [
+  {
+    name: 'pointStyle: circle (default)',
+    handler: (chart) => {
+      chart.data.datasets.forEach(dataset => {
+        dataset.pointStyle = 'circle';
+      });
+      chart.update();
+    }
+  },
+]
+
+
+
 
 const ctx = document.getElementById('myChart');
 new Chart(ctx, {
