@@ -110,17 +110,20 @@
             </div>
         </div>
     </main>
-    {{x}}
+    
+
+    {{dados_json}}
 
 
     <script>
+
+        const dados = JSON.parse("{{dados_json|escapejs}}")        
+
+        console.log(dados)
         const data = {
         datasets: [{
             label: 'Scatter Dataset',
-            data: [{
-            x: {{x}},
-            y: {{y}}
-            }],
+            data: dados,
             backgroundColor: 'rgb(255, 99, 132)'
         }],
         };

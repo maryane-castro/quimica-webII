@@ -1,25 +1,25 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Aluno, Experimento_Pratico, Experimento_Teorico
-
+import json
 
 
 def dash(request): 
-    x = y = []
+    lista_dados = []
     
     value_teorico = Experimento_Teorico.objects.all()
     for c in value_teorico:
         tempo = 0.53 * c.concentracao_t
-        y.append(tempo)
-        x.append(c.concentracao_t)
-        dict = {'z': x, 'w': y}
-        print(dict)
+        lista_dados.append({"x": c.concentracao_t, "y":tempo})
 
     value_pratico = Experimento_Pratico.objects.all()
     for c in value_pratico:
         pass
 
-    return render(request, 'dash.html', {'y' : dict['w'], 'x' : dict['z']})
+
+
+    dados_json = json.dumps(lista_dados)
+    return render(request, 'dash.html', {"dados_json":dados_json})
 
 
 
