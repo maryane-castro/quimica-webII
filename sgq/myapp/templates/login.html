@@ -83,6 +83,12 @@
             border-radius: 4px;
         }
 
+        button > a{
+            text-decoration: none;
+            color: white;
+            padding: 10px;
+        }
+
 
     </style>
 </head>
@@ -103,11 +109,11 @@
 
 
                     <div id="butao">
-                        <button>Login</button>
+                        <button><a href="{% url 'dash'%}">Login</a></button>
                     </div>
 
                     <div id="link">
-                        <a href="#">Cadastrar</a>
+                        <a href="{% url 'cadastro'%}">Cadastrar</a>
                     </div>
                 </div>
             </div>
