@@ -57,9 +57,9 @@ def new_exp_teorico(request):
 
 
 
-def del_exp_teorico():
-    pass
-
+def del_exp_teorico(request, pk):
+    objeto = Experimento_Teorico.objects.filter(pk=pk)
+    form = 
 
 
 
