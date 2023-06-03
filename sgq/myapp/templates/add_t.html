@@ -66,13 +66,36 @@
             border-radius: 0 10px 10px 0;
             text-align: center;
         }
-        .lacuna{
+        .lacuna1{
             width: 30vw;
             height: 15vh;
             background-color: #FFA1A1;
             margin: 30px 0 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
             
         }
+
+        .lacuna2{
+            width: 30vw;
+            height: 10vh;
+            background-color: transparent;
+            margin: 30px 0 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .lacuna2 > button{
+            width: 20vw;
+            height: 5vh;
+            background-color: #FFA1A1;
+            border-radius: 10px;
+        }
+
 
         input{
             position: relative;
@@ -111,11 +134,15 @@
             </div>
             <div id="item">
                 <div>   
-                    <div class="lacuna">
-                        <input type="text" name="" id="">
+                    <div class="lacuna1">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{form}}
+                        </form>
                     </div>
-                    <div class="lacuna">
-                        <input type="text" name="" id="">
+                    <div class="lacuna2">
+                        <button type="submit" style="display: block;">Salvar</button>
+                        <button type="submit" style="display: block;">Cancelar</button>
                     </div>
                 </div>
             </div>

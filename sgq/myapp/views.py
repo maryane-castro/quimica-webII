@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Aluno, Experimento_Pratico, Experimento_Teorico
 import json
+from .form import ExpT_Form
 
 
 def dash(request): 
@@ -45,14 +46,30 @@ def cadastro(request):
     return render(request, 'cadastro.html')
 
 
+
+def new_exp_teorico(request):
+    data = {}
+    form = ExpT_Form()
+    data['form'] = form
+    return render(request, 'add_t.html', data)
+
+
+
+
+
+def del_exp_teorico():
+    pass
+
+
+
+
+
 def new_exp_pratico():
     pass
 
 def del_exp_pratico():
     pass
 
-def new_exp_teorico():
-    pass
 
-def del_exp_teorico():
-    pass
+
+

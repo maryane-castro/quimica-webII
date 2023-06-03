@@ -72,6 +72,9 @@
         }
         
 
+        a{
+            text-decoration: none;
+        }
 
         
 
@@ -89,11 +92,11 @@
                 <div>
                     <p style="margin-top: 15vh;">Menu</p>
                     <div id="opcoes">
-                        <button style="display: block;">Add Pratico</button>
-                        <button style="display: block;">Remove Pratico</button>
+                        <button style="display: block;"><a href="{% url 'new_exp_teorico'%}">Add Teorico</a></button>
+                        <button style="display: block;"><a href="{% url 'dash'%}">Remove Teorico</a></button>
 
-                        <button style="display: block;">Add Teoria</button>
-                        <button style="display: block;">Remove Teoria</button>
+                        <button style="display: block;"><a href="{% url 'dash'%}">Add Pratico</a></button>
+                        <button style="display: block;"><a href="{% url 'dash'%}">Remove Pratico</a></button>
                     </div>
                 </div>
                 
