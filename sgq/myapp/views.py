@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from .models import Aluno, Experimento_Pratico, Experimento_Teorico
 import json
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate
 def dash(request): 
     lista_dados = []
     
@@ -25,7 +26,18 @@ def dash(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+    if request.method == 'GET':
+        return render(request, 'login.html')
+    else:
+        username = request.POST.get('username')
+        senha = request.POST.get('senha')
+
+        user = authenticate(username=username, password=senha)
+        if user:
+            return HttpResponse('autenticado')
+        else: 
+            return HttpResponse('erro')
+
 
 
 def cadastro(request):

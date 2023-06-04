@@ -59,7 +59,7 @@
             margin-bottom: 10%;
         }
 
-        #butao > button{
+        #butao > input{
             background-color: #FF8686;
             width: 13vw;
             height: 7vh;
@@ -83,11 +83,7 @@
             border-radius: 4px;
         }
 
-        button > a{
-            text-decoration: none;
-            color: white;
-            padding: 10px;
-        }
+        
 
 
     </style>
@@ -104,22 +100,18 @@
                 <div>
                     <form action="{% url 'login' %}" method="POST">
                         {% csrf_token %}
-                        <input type="text" name="username" id="" placeholder="Username">
-                        
-                        <input type="password" name="senha" id="" placeholder="Senha">
-                        
-
-
+                        <input type="text" name="username" id="" placeholder="Username" style="display: block;">
+                        <input type="password" name="senha" id="" placeholder="Senha" style="display: block;">
                         <div id="butao">
-                            <input type="submit" value="login">
+                            <input type="submit" value="Logar">
                         </div>
                     </form>
 
 
-                  
+                    
 
                     <div id="link">
-                        <a href="{% url 'cadastro'%}">Cadastrar</a>
+                        <a href="{% url 'cadastro'%}">Login</a>
                     </div>
                 </div>
             </div>
