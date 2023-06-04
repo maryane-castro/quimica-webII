@@ -45,6 +45,8 @@ def login(request):
 #plataform
 
 
+
+
 def dash(request): 
     if request.user.is_authenticated:
         lista_dados = []
@@ -64,3 +66,15 @@ def dash(request):
         return render(request, 'dash.html', {"dados_json":dados_json})
     
     return HttpResponse('Vc precisa estar logado')
+
+
+
+def addteorico():
+    pass
+def delteorico():
+    pass
+
+def addpratico():
+    pass
+def delpratico():
+    pass
