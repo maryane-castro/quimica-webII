@@ -2,9 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Aluno, Experimento_Pratico, Experimento_Teorico
 import json
-from .form import ExpT_Form
-
-
+from django.contrib.auth.models import User
 def dash(request): 
     lista_dados = []
     
@@ -26,49 +24,24 @@ def dash(request):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 def login(request):
     return render(request, 'login.html')
 
 
 def cadastro(request):
-    return render(request, 'cadastro.html')
-
-
-
-def new_exp_teorico(request):
-    data = {}
-    form = ExpT_Form()
-    data['form'] = form
-    return render(request, 'add_t.html', data)
-
-
-
-
-
-def del_exp_teorico(request, pk):
-    objeto = Experimento_Teorico.objects.filter(pk=pk)
-    form = 
-
-
-
-
-def new_exp_pratico():
-    pass
-
-def del_exp_pratico():
-    pass
+    if request.method == 'GET':
+        return render(request, 'cadastro.html')
+    else: 
+        username = request.POST.get('username')
+        senha = request.POST.get('senha')
+        
+        user = User.objects.filter(username=username).first()
+        if user:
+            return HttpResponse('Já existe um usuario com esse nome')
+        
+        user = User.objects.create_user(username=username, password=senha)
+        user.save()
+        return HttpResponse('Show!!')
 
 
 
