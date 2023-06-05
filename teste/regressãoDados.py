@@ -1,6 +1,3 @@
-#Parte teorica
-#pratica é o do calculo mesmo
-
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 import numpy as np
@@ -20,11 +17,17 @@ regressao = LinearRegression()
 regressao.fit(x_valores, y_valores)
 y_previsto = regressao.predict(x_valores)
 
-
-
+#dados
 plt.scatter(x_valores, y_valores)
+plt.xlabel('Eixo X')
+plt.ylabel('Eixo Y')
+plt.title('Gráfico de Dispersão')
+plt.show()
+
+#regressão linear
+#plt.scatter(x_valores, y_valores)  #dados
 plt.plot(x_valores, y_previsto, color='red')
 plt.xlabel('Eixo X')
 plt.ylabel('Eixo Y')
-plt.title('Gráfico de Dispersão com Regressão Linear')
+plt.title('Regressão Linear')
 plt.show()
