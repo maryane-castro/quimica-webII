@@ -22,7 +22,7 @@ plt.scatter(x_valores, y_valores)
 plt.xlabel('Eixo X')
 plt.ylabel('Eixo Y')
 plt.title('Gráfico de Dispersão')
-plt.show()
+#plt.show()
 
 #regressão linear
 #plt.scatter(x_valores, y_valores)  #dados
@@ -30,4 +30,17 @@ plt.plot(x_valores, y_previsto, color='red')
 plt.xlabel('Eixo X')
 plt.ylabel('Eixo Y')
 plt.title('Regressão Linear')
-plt.show()
+#plt.show()
+x_previstos1 = []
+y_previsto1 = []
+
+
+
+for i in range(len(lista_dados)):
+    x_previstos1.append(lista_dados[i]['x'])
+    y_previsto1.append(round(y_previsto[i], 2))
+
+
+#printar tudo igualzinho
+print(x_previstos1)
+print(y_previsto1)

@@ -6,8 +6,19 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate 
 from django.contrib.auth import login as lg
 
-#auth
 
+from sklearn.linear_model import LinearRegression
+import numpy as np
+
+#auth
+def regressao(dados):
+    x_valores = np.array([dado['x'] for dado in dados]).reshape(-1, 1)
+    y_valores = np.array([dado['y'] for dado in dados])
+
+    regressao = LinearRegression()
+    regressao.fit(x_valores, y_valores)
+    y_previsto = regressao.predict(x_valores)
+    pass #em construção
 
 
 def cadastro(request):
@@ -55,10 +66,8 @@ def dash(request):
         for c in value_teorico:
             tempo = 0.53 * c.concentracao_t
             lista_dados.append({"x": c.concentracao_t, "y":tempo})
+            regressao(lista_dados)
 
-        value_pratico = Experimento_Pratico.objects.all()
-        for c in value_pratico:
-            pass
 
 
 
