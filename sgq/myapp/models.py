@@ -15,8 +15,4 @@ class Experimento_Pratico(models.Model):
     categoria = models.ForeignKey(Aluno, on_delete=models.CASCADE)
 
 
-class Experimento_Teorico(models.Model):
-    experimento_t = models.IntegerField(primary_key=True)
-    temp_ebulicao_t = models.FloatField()
-    concentracao_t = models.FloatField(default=None)
-    categoria = models.ForeignKey(Aluno,on_delete=models.CASCADE)
+

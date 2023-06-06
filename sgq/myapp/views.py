@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Aluno, Experimento_Pratico, Experimento_Teorico
+from .models import Aluno, Experimento_Pratico
 import json
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate 
@@ -62,10 +62,10 @@ def dash(request):
     if request.user.is_authenticated:
         lista_dados = []
         
-        value_teorico = Experimento_Teorico.objects.all()
+        value_teorico = Experimento_Pratico.objects.all()
         for c in value_teorico:
-            tempo = 0.53 * c.concentracao_t
-            lista_dados.append({"x": c.concentracao_t, "y":tempo})
+            tempo = 0.53 * c.concentracao_p
+            lista_dados.append({"x": c.concentracao_p, "y":tempo})
             regressao(lista_dados)
 
 

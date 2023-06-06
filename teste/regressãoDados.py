@@ -22,7 +22,7 @@ plt.scatter(x_valores, y_valores)
 plt.xlabel('Eixo X')
 plt.ylabel('Eixo Y')
 plt.title('Gráfico de Dispersão')
-plt.show()
+#plt.show()
 
 #regressão linear
 #plt.scatter(x_valores, y_valores)  #dados
