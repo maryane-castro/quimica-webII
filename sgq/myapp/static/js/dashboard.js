@@ -20,7 +20,7 @@ const actions = [
 
 const ctx = document.getElementById('myChart');
 new Chart(ctx, {
-  type: 'scatter',  //line
+  type: 'line',  //line
   data: data,
   options: {
     scales: {
