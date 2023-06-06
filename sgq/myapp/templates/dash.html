@@ -120,19 +120,15 @@
     <script>
 
         const dados = JSON.parse("{{dados_json|escapejs}}")        
-
-        console.log(dados)
+        
         const data = {
         datasets: [{
-            label: 'Dados',
+            label: 'Dados Práticos',
             data: dados,
             pointStyle: 'circle',
             pointRadius: 5,
             pointHoverRadius: 15,
             backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(150, 99, 132)',
-            
-        
         }],
         };
         

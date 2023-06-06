@@ -61,12 +61,17 @@ def login(request):
 def dash(request): 
     if request.user.is_authenticated:
         lista_dados = []
+        lista_teorico = []
         
         value_teorico = Experimento_Pratico.objects.all()
         for c in value_teorico:
-            tempo = 0.53 * c.concentracao_p
-            lista_dados.append({"x": c.concentracao_p, "y":tempo})
-            regressao(lista_dados)
+            tempo_1 = c.temp_ebulicao_p
+            lista_dados.append({"x": c.concentracao_p, "y":tempo_1})
+
+            tempo_2 = c.concentracao_p * 0.52
+            lista_teorico.append({"x": c.concentracao_p, "y":tempo_2})
+
+            #regressao(lista_dados)
 
 
 
