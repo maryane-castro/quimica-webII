@@ -40,7 +40,21 @@ for i in range(len(lista_dados)):
     x_previstos1.append(lista_dados[i]['x'])
     y_previsto1.append(round(y_previsto[i], 2))
 
+print(x_previstos1[0])
+
+
+lista_regressao = []
+for c in range(len(x_previstos1)):
+    print(c)
+    lista_regressao.append({"x": x_previstos1[c], "y" : y_previsto1[c]})
+#para retornar ao dashboard
+print(lista_regressao[0]['x'])
+
+
+x_valores = np.array([dado['x'] for dado in lista_regressao]).reshape(-1, 1)
+y_valores = np.array([dado['y'] for dado in lista_regressao])
+
 
 #printar tudo igualzinho
-print(x_previstos1)
-print(y_previsto1)
+#print(x_previstos1)
+#print(y_previsto1)

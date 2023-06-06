@@ -28,6 +28,8 @@ new Chart(ctx, {
         type: 'linear',
         position: 'bottom'
       }
+      
+      
     }
   }
 
