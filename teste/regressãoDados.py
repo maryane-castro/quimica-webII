@@ -22,7 +22,7 @@ plt.scatter(x_valores, y_valores)
 plt.xlabel('Eixo X')
 plt.ylabel('Eixo Y')
 plt.title('Gráfico de Dispersão')
-#plt.show()
+plt.show()
 
 #regressão linear
 #plt.scatter(x_valores, y_valores)  #dados
@@ -30,7 +30,7 @@ plt.plot(x_valores, y_previsto, color='red')
 plt.xlabel('Eixo X')
 plt.ylabel('Eixo Y')
 plt.title('Regressão Linear')
-#plt.show()
+plt.show()
 x_previstos1 = []
 y_previsto1 = []
 
