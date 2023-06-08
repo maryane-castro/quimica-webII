@@ -2,6 +2,21 @@
   'use strict'
 //----------------
 
+var dados = [
+  { x: 1, y: 3 },
+  { x: 2, y: 4 },
+  { x: 3, y: 5 },
+  // Adicione mais pontos de dados de dispersão conforme necessário
+]
+
+var regressao = [
+  { x: 1, y: 2 },
+  { x: 2, y: 3 },
+  { x: 3, y: 4 },
+  // Adicione mais pontos de dados de linha conforme necessário
+]
+
+
 // Obtenha a referência do elemento de gráfico no HTML
 const ctx = document.getElementById('myChart').getContext('2d');
 
@@ -10,23 +25,13 @@ const data = {
   datasets: [
     {
       label: 'Dispersão',
-      data: [
-        { x: 1, y: 3 },
-        { x: 2, y: 4 },
-        { x: 3, y: 5 },
-        // Adicione mais pontos de dados de dispersão conforme necessário
-      ],
+      data: dados,
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
       type: 'scatter',
     },
     {
       label: 'Linha',
-      data: [
-        { x: 1, y: 2 },
-        { x: 2, y: 3 },
-        { x: 3, y: 4 },
-        // Adicione mais pontos de dados de linha conforme necessário
-      ],
+      data: regressao,
       borderColor: 'rgba(54, 162, 235, 1)',
       fill: false,
       type: 'line',

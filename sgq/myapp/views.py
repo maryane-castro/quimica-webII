@@ -21,6 +21,14 @@ def regressao(dados):
     pass #em construção
 
 
+
+
+
+
+
+
+
+
 def cadastro(request):
     if request.method == 'GET':
         return render(request, 'cadastro.html')
@@ -63,6 +71,7 @@ def dash(request):
         lista_dados = []
         lista_teorico = []
         
+        #teorico
         value_teorico = Experimento_Pratico.objects.all()
         for c in value_teorico:
             tempo_1 = c.temp_ebulicao_p
@@ -71,13 +80,15 @@ def dash(request):
             tempo_2 = c.concentracao_p * 0.52
             lista_teorico.append({"x": c.concentracao_p, "y":tempo_2})
 
-            #regressao(lista_dados)
+        #regressao...
+
 
 
 
 
         dados_json = json.dumps(lista_dados)
-        return render(request, 'dash.html', {"dados_json":dados_json})
+        teorico = json.dumps(lista_teorico)
+        return render(request, 'dash.html', {"dados_json":dados_json, "dados_teorico":teorico})
     
     return HttpResponse('Vc precisa estar logado')
 
