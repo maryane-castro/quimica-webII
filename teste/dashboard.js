@@ -2,68 +2,52 @@
   'use strict'
 //----------------
 
+// Obtenha a referência do elemento de gráfico no HTML
+const ctx = document.getElementById('myChart').getContext('2d');
 
-
+// Dados para o gráfico
 const data = {
-  datasets: [{
-    label: 'Scatter Dataset',
-    data: [{
-      x: -10,
-      y: 0
-    }, {
-      x: 0,
-      y: 10
-    }, {
-      x: 10,
-      y: 5
-    }, {
-      x: 0.5,
-      y: 5.5
-    }],
-    backgroundColor: 'rgb(255, 99, 132)'
-  }],
+  datasets: [
+    {
+      label: 'Dispersão',
+      data: [
+        { x: 1, y: 3 },
+        { x: 2, y: 4 },
+        { x: 3, y: 5 },
+        // Adicione mais pontos de dados de dispersão conforme necessário
+      ],
+      backgroundColor: 'rgba(255, 99, 132, 0.5)',
+      type: 'scatter',
+    },
+    {
+      label: 'Linha',
+      data: [
+        { x: 1, y: 2 },
+        { x: 2, y: 3 },
+        { x: 3, y: 4 },
+        // Adicione mais pontos de dados de linha conforme necessário
+      ],
+      borderColor: 'rgba(54, 162, 235, 1)',
+      fill: false,
+      type: 'line',
+    },
+  ],
 };
 
-
-
-
-
-const ctx = document.getElementById('myChart');
+// Crie o gráfico
 new Chart(ctx, {
-  type: 'scatter',  //line
+  type: 'scatter', // Use o tipo de gráfico que desejar (scatter, line, etc.)
   data: data,
   options: {
-    scales: {
-      x: {
-        type: 'linear',
-        position: 'bottom'
-      }
-    }
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//------------------------
+    // Personalize as opções conforme necessário
+  },
 });
+
+
+
+
+//----
+
 })()
 
 

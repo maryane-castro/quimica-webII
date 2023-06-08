@@ -1,6 +1,26 @@
 (function () {
   'use strict'
 //----------------
+const ctx = document.getElementById('myChart').getContext('2d');
+
+// Dados para o gráfico
+
+
+// Crie o gráfico
+new Chart(ctx, {
+  type: 'scatter', // Use o tipo de gráfico que desejar (scatter, line, etc.)
+  data: data,
+  options: {
+    // Personalize as opções conforme necessário
+  },
+});
+
+
+
+
+
+
+})()
 
 
 
@@ -8,6 +28,8 @@
 
 
 
+
+/*
 const ctx = document.getElementById('myChart');
 new Chart(ctx, {
   type: 'line',  //line
@@ -45,17 +67,7 @@ new Chart(ctx, {
 
 
 //------------------------
-});
-})()
-
-
-
-
-
-
-
-
-
+});*/
 
 
 

@@ -120,17 +120,29 @@
     <script>
 
         const dados = JSON.parse("{{dados_json|escapejs}}")        
-        
         const data = {
-        datasets: [{
-            label: 'Dados Práticos',
+        datasets: [
+            {
+            label: 'Dispersão',
             data: dados,
-            pointStyle: 'circle',
-            pointRadius: 5,
-            pointHoverRadius: 15,
-            backgroundColor: 'rgb(255, 99, 132)',
-        }],
+            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            type: 'scatter',
+            },
+            {
+            label: 'Linha',
+            data: [
+                { x: 1, y: 2 },
+                { x: 2, y: 3 },
+                { x: 3, y: 4 },
+                // Adicione mais pontos de dados de linha conforme necessário
+            ],
+            borderColor: 'rgba(54, 162, 235, 1)',
+            fill: false,
+            type: 'line',
+            },
+        ],
         };
+        
         
     </script>
     <script src="{% static 'js/dashboard.js' %}" ></script>
