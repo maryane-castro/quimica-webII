@@ -98,11 +98,15 @@ def dash(request):
     if request.user.is_authenticated:
 
         k_Raul = k_raul()
-        k_otm = k_otimo()
+        k_Otimo = k_otimo()
         dados = teorico()
-        
-        dados_json = json.dumps(dados)
-        return render(request, 'dash.html', {"dados_json":dados_json})
+
+
+        k_Raul_json = json.dumps(k_Raul)
+        k_Otimo_json = json.dumps(k_Otimo)
+        Dados_json = json.dumps(dados)
+
+        return render(request, 'dash.html', {"dados_json":Dados_json, "k_otimo": k_Otimo_json, "k_raul" : k_Raul_json})
     
     return HttpResponse('Vc precisa estar logado')
 
