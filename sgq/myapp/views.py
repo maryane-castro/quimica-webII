@@ -57,7 +57,7 @@ def login(request):
 
 #plataform
 
-def k_raul(request):
+def k_raul():
     value = Experimento_Pratico.objects.all()
 
     for c in value:
@@ -97,16 +97,14 @@ def teorico():
 def dash(request): 
     if request.user.is_authenticated:
 
-        k_Raul = k_raul()
-        k_Otimo = k_otimo()
-        dados = teorico()
+        k_Raul = k_raul()     #y - array
+        k_Otimo = k_otimo()   #y - array
+        dados = teorico()     #x, y
 
 
-        k_Raul_json = json.dumps(k_Raul)
-        k_Otimo_json = json.dumps(k_Otimo)
         Dados_json = json.dumps(dados)
 
-        return render(request, 'dash.html', {"dados_json":Dados_json, "k_otimo": k_Otimo_json, "k_raul" : k_Raul_json})
+        return render(request, 'dash.html', {"dados_json":Dados_json, "k_otimo": k_Otimo, "k_raul" : k_Raul})
     
     return HttpResponse('Vc precisa estar logado')
 
