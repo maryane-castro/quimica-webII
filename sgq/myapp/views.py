@@ -12,19 +12,13 @@ import numpy as np
 
 #auth
 def regressao(dados):
-    x_valores = np.array([dado['x'] for dado in dados]).reshape(-1, 1)
-    y_valores = np.array([dado['y'] for dado in dados])
+    # x_valores = np.array([dado['x'] for dado in dados]).reshape(-1, 1)
+    # y_valores = np.array([dado['y'] for dado in dados])
 
-    regressao = LinearRegression()
-    regressao.fit(x_valores, y_valores)
-    y_previsto = regressao.predict(x_valores)
+    # regressao = LinearRegression()
+    # regressao.fit(x_valores, y_valores)
+    # y_previsto = regressao.predict(x_valores)
     pass #em construção
-
-
-
-
-
-
 
 
 
@@ -63,32 +57,60 @@ def login(request):
 
 #plataform
 
+def k_raul(request):
+    value = Experimento_Pratico.objects.all()
+
+    for c in value:
+        k = c.concentracao_p * 0.52
+    
+    return k 
+
+def k_otimo():
+    value = Experimento_Pratico.objects.all()
+    concentracao = []
+    temp = []
+
+    for c in value:
+        concentracao.append([c.concentracao_p])
+        temp.append(c.temp_ebulicao_p)
+
+    concentracao = np.array(concentracao)
+    temp = np.array(temp)
+    regressao = LinearRegression().fit(concentracao, temp)
+    return regressao.coef_
+
+def teorico():
+    value = Experimento_Pratico.objects.all()
+    temp = []
+    concentracao = []
+
+    for c in value:
+        temp.append(c.temp_ebulicao_p)
+        concentracao.append(c.concentracao_p)
+    
+    return temp, concentracao
+
+
+
+
+
 
 
 
 def dash(request): 
     if request.user.is_authenticated:
         lista_dados = []
-        lista_teorico = []
         
         #teorico
-        value_teorico = Experimento_Pratico.objects.all()
-        for c in value_teorico:
+        value = Experimento_Pratico.objects.all()
+        for c in value:
             tempo_1 = c.temp_ebulicao_p
             lista_dados.append({"x": c.concentracao_p, "y":tempo_1})
 
-            tempo_2 = c.concentracao_p * 0.52
-            lista_teorico.append({"x": c.concentracao_p, "y":tempo_2})
-
         #regressao...
 
-
-
-
-
         dados_json = json.dumps(lista_dados)
-        teorico = json.dumps(lista_teorico)
-        return render(request, 'dash.html', {"dados_json":dados_json, "dados_teorico":teorico})
+        return render(request, 'dash.html', {"dados_json":dados_json})
     
     return HttpResponse('Vc precisa estar logado')
 
@@ -103,3 +125,13 @@ def addpratico():
     pass
 def delpratico():
     pass
+
+
+# lista_teorico = []
+
+#     value = Experimento_Pratico.objects.all()
+#     for c in value:
+#         tempo_2 = c.concentracao_p * 0.52
+#         lista_teorico.append({"x": c.concentracao_p, "y":tempo_2})
+
+#     teorico = json.dumps(lista_teorico)
