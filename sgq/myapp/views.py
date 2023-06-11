@@ -77,20 +77,17 @@ def k_otimo():
     concentracao = np.array(concentracao)
     temp = np.array(temp)
     regressao = LinearRegression().fit(concentracao, temp)
+    
     return regressao.coef_
 
 def teorico():
     value = Experimento_Pratico.objects.all()
-    temp = []
-    concentracao = []
+    lista_dados = []
 
     for c in value:
-        temp.append(c.temp_ebulicao_p)
-        concentracao.append(c.concentracao_p)
-    
-    return temp, concentracao
+        lista_dados.append({"x": c.concentracao_p, "y" : c.temp_ebulicao_p})
 
-
+    return lista_dados
 
 
 
@@ -99,17 +96,12 @@ def teorico():
 
 def dash(request): 
     if request.user.is_authenticated:
-        lista_dados = []
+
+        k_Raul = k_raul()
+        k_otm = k_otimo()
+        dados = teorico()
         
-        #teorico
-        value = Experimento_Pratico.objects.all()
-        for c in value:
-            tempo_1 = c.temp_ebulicao_p
-            lista_dados.append({"x": c.concentracao_p, "y":tempo_1})
-
-        #regressao...
-
-        dados_json = json.dumps(lista_dados)
+        dados_json = json.dumps(dados)
         return render(request, 'dash.html', {"dados_json":dados_json})
     
     return HttpResponse('Vc precisa estar logado')
