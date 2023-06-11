@@ -119,18 +119,26 @@
     <script>
 
         const dados = JSON.parse("{{dados_json|escapejs}}")   
-        const teorico = JSON.parse("{{dados_teorico|escapejs}}")
+        const k_otimo = JSON.parse("{{k_otimo|escapejs}}")
+        const k_raul = JSON.parse("{{k_raul|escapejs}}")
         const data = {
         datasets: [
             {
-            label: 'Dispersão',
+            label: 'teorico',
             data: dados,
             backgroundColor: 'rgba(255, 99, 132, 0.5)',
             type: 'scatter',
             },
             {
-            label: 'Linha',
-            data: teorico,
+            label: 'k_raul',
+            data: k_raul,
+            borderColor: 'rgba(54, 162, 235, 1)',
+            fill: false,
+            type: 'line',
+            },
+            {
+            label: 'k_otimo',
+            data: k_otimo,
             borderColor: 'rgba(54, 162, 235, 1)',
             fill: false,
             type: 'line',
