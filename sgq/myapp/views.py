@@ -8,6 +8,7 @@ from django.contrib.auth import login as lg
 
 
 from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 import numpy as np
 
 #auth
@@ -61,13 +62,15 @@ def k_raul():
     value = Experimento_Pratico.objects.all()
 
     for c in value:
-        temp = c.concentracao_p * 0.52 
+        variacao = c.concentracao_p * 0.52 
 
 
     lista_dados = []
     for c in value:
-        lista_dados.append({"x": c.concentracao_p, "y" : temp})
-    return lista_dados
+        lista_dados.append({"x": c.concentracao_p, "y" : variacao})
+
+
+    return lista_dados, variacao
 
 
 
@@ -89,7 +92,9 @@ def k_otimo():
     lista_dados = []
     for i in value:
         lista_dados.append({"x": i.concentracao_p, "y": (reg[0] * i.concentracao_p) + regressao.intercept_})
-    return lista_dados
+    
+    aux = (reg[0] * i.concentracao_p) + regressao.intercept_
+    return lista_dados, aux
     
 
 
@@ -107,16 +112,26 @@ def teorico():  #CERTOOO
 def dash(request): 
     if request.user.is_authenticated:
 
-        k_Raul = k_raul()     #y - array
-        k_Otimo = k_otimo()   #y - array
+        k_Raul, aux = k_raul()     #y - array
+        k_Otimo, aux2 = k_otimo()   #y - array
         dados = teorico()     #x, y
 
+        value = Experimento_Pratico.objects.all()
+        concentracao = []
+        temp = []
 
+        for c in value:
+            concentracao.append(c.concentracao_p)
+            temp.append(c.temp_ebulicao_p)
+
+        erro_raul = mean_squared_error(100-np.array(temp), 0.52 * np.array(concentracao))
+        erro_otimo = mean_squared_error(100-np.array(temp), k_Otimo * np.array(concentracao))
+        
         k_Raul_json = json.dumps(k_Raul) 
         k_Otimo_json = json.dumps(k_Otimo)
         Dados_json = json.dumps(dados)
 
-        return render(request, 'dash.html', {"dados_json":Dados_json, "k_otimo": k_Otimo_json, "k_raul" : k_Raul_json})
+        return render(request, 'dash.html', {"dados_json":Dados_json, "k_otimo": k_Otimo_json, "k_raul" : k_Raul_json, "erro1":erro_otimo, "erro2":erro_raul})
     
     return HttpResponse('Vc precisa estar logado')
 

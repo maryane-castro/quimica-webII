@@ -17,7 +17,7 @@ plt.scatter(X, y)
 
 meu_y = reg.coef_ * X + reg.intercept_
 print('meu erro1', mean_squared_error(y, meu_y))
-y_raul = 2*X
+y_raul = 0.52*X
 print('meu erro2', mean_squared_error(y, y_raul))
 
 
