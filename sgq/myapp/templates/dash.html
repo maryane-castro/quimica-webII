@@ -121,6 +121,8 @@
         const dados = JSON.parse("{{dados_json|escapejs}}")   
         const k_otimo = JSON.parse("{{k_otimo|escapejs}}")
         const k_raul = JSON.parse("{{k_raul|escapejs}}")
+
+        console.log(dados, k_otimo, k_raul)
         const data = {
         datasets: [
             {
@@ -132,15 +134,14 @@
             {
             label: 'k_raul',
             data: k_raul,
-            borderColor: 'rgba(54, 162, 235, 1)',
-            fill: false,
+            borderColor: 'rgba(0, 0, 0, 1)',
+
             type: 'line',
             },
             {
             label: 'k_otimo',
             data: k_otimo,
             borderColor: 'rgba(54, 162, 235, 1)',
-            fill: false,
             type: 'line',
             },
         ],

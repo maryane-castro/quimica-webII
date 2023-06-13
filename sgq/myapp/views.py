@@ -61,9 +61,15 @@ def k_raul():
     value = Experimento_Pratico.objects.all()
 
     for c in value:
-        k = c.concentracao_p * 0.52
-    
-    return k 
+        temp = c.concentracao_p * 0.52 
+
+
+    lista_dados = []
+    for c in value:
+        lista_dados.append({"x": c.concentracao_p, "y" : temp})
+    return lista_dados
+
+
 
 def k_otimo():
     value = Experimento_Pratico.objects.all()
@@ -76,24 +82,23 @@ def k_otimo():
 
     concentracao = np.array(concentracao)
     temp = np.array(temp)
-    regressao = LinearRegression().fit(concentracao, temp)
+    regressao = LinearRegression().fit(concentracao, 100-temp)
     reg = regressao.coef_
     reg = reg.tolist()
 
-    # lista_dados = []
-    # for i in range(len(temp)):
-    #     lista_dados.append({"x": temp[i], "y": reg})
+    lista_dados = []
+    for i in value:
+        lista_dados.append({"x": i.concentracao_p, "y": (reg[0] * i.concentracao_p) + regressao.intercept_})
+    return lista_dados
     
 
-    # return lista_dados
-    pass
 
-def teorico():  #certo
+def teorico():  #CERTOOO    
     value = Experimento_Pratico.objects.all()
     lista_dados = []
 
     for c in value:
-        lista_dados.append({"x": c.concentracao_p, "y" : c.temp_ebulicao_p})
+        lista_dados.append({"x": c.concentracao_p, "y" : 100-c.temp_ebulicao_p})
 
     return lista_dados
 
