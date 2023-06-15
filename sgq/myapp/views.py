@@ -6,21 +6,29 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate 
 from django.contrib.auth import login as lg
 
-
-from sklearn.linear_model import LinearRegression
-from sklearn.metrics import mean_squared_error
+import matplotlib as plt
 import numpy as np
+#from sklearn.linear_model import LinearRegression 
 
-#auth
-def regressao(dados):
-    # x_valores = np.array([dado['x'] for dado in dados]).reshape(-1, 1)
-    # y_valores = np.array([dado['y'] for dado in dados])
 
-    # regressao = LinearRegression()
-    # regressao.fit(x_valores, y_valores)
-    # y_previsto = regressao.predict(x_valores)
-    pass #em construção
 
+def coef(x, y):
+	# number of observations/points
+	n = np.size(x)
+
+	# mean of x and y vector
+	m_x = np.mean(x)
+	m_y = np.mean(y)
+
+	# calculating cross-deviation and deviation about x
+	SS_xy = np.sum(y*x) - n*m_y*m_x
+	SS_xx = np.sum(x*x) - n*m_x*m_x
+
+	# calculating regression coefficients
+	b_1 = SS_xy / SS_xx
+	b_0 = m_y - b_1*m_x
+
+	return (b_0, b_1)
 
 
 
@@ -85,15 +93,13 @@ def k_otimo():
 
     concentracao = np.array(concentracao)
     temp = np.array(temp)
-    regressao = LinearRegression().fit(concentracao, 100-temp)
-    reg = regressao.coef_
-    reg = reg.tolist()
+    reg = coef(concentracao, 100-temp) # só esse
 
     lista_dados = []
     for i in value:
-        lista_dados.append({"x": i.concentracao_p, "y": (reg[0] * i.concentracao_p) + regressao.intercept_})
+        lista_dados.append({"x": i.concentracao_p, "y": (reg[0] * i.concentracao_p) + reg[1]})
     
-    aux = (reg[0] * i.concentracao_p) + regressao.intercept_
+    aux = (reg[0] * i.concentracao_p) + reg[1]
     return lista_dados, aux
     
 
@@ -103,11 +109,17 @@ def teorico():  #CERTOOO
     lista_dados = []
 
     for c in value:
-        lista_dados.append({"x": c.concentracao_p, "y" : 100-c.temp_ebulicao_p})
+        lista_dados.append({"x": c.concentracao_p, "y" : -c.temp_ebulicao_p})
 
     return lista_dados
 
 
+
+def mean_squared_error(y_true, y_pred):
+    e = 0
+    for yi, yj in zip(y_true, y_pred):
+        e += (yi - yj)**2
+    return e
 
 def dash(request): 
     if request.user.is_authenticated:
@@ -124,14 +136,14 @@ def dash(request):
             concentracao.append(c.concentracao_p)
             temp.append(c.temp_ebulicao_p)
 
-        erro_raul = mean_squared_error(100-np.array(temp), 0.52 * np.array(concentracao))
-        erro_otimo = mean_squared_error(100-np.array(temp), k_Otimo * np.array(concentracao))
+        # erro_raul = mean_squared_error(100-np.array(temp), 0.52 * np.array(concentracao))
+        # erro_otimo = mean_squared_error(100-np.array(temp), k_Otimo * np.array(concentracao))
         
         k_Raul_json = json.dumps(k_Raul) 
         k_Otimo_json = json.dumps(k_Otimo)
         Dados_json = json.dumps(dados)
 
-        return render(request, 'dash.html', {"dados_json":Dados_json, "k_otimo": k_Otimo_json, "k_raul" : k_Raul_json, "erro1":erro_otimo, "erro2":erro_raul})
+        return render(request, 'dash.html', {"dados_json":Dados_json, "k_otimo": k_Otimo_json, "k_raul" : k_Raul_json})
     
     return HttpResponse('Vc precisa estar logado')
 
