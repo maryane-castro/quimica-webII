@@ -8,6 +8,8 @@ urlpatterns = [
     path('cadastro', views.cadastro, name='cadastro'), #ok
     path('dash', views.dash, name='dash'), #ok
 
+    path('newTeorico', views.newTeorico, name='newTeorico')
+
 
 
 

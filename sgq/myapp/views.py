@@ -5,7 +5,7 @@ import json
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate 
 from django.contrib.auth import login as lg
-
+from .forms import ExpForm
 import matplotlib as plt
 import numpy as np
 #from sklearn.linear_model import LinearRegression 
@@ -149,15 +149,16 @@ def dash(request):
 
 
 
-def addteorico():
-    pass
-def delteorico():
-    pass
+def newTeorico(request):
+    if request.user.is_authenticated:
 
-def addpratico():
-    pass
-def delpratico():
-    pass
+
+
+
+
+# def delTeorico():
+#     pass
+
 
 
 # lista_teorico = []
