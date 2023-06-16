@@ -151,6 +151,7 @@ def dash(request):
 
 def newTeorico(request):
     if request.user.is_authenticated:
+        pass
 
 
 
