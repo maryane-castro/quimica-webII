@@ -1,16 +1,17 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Aluno, Experimento_Pratico
+from .models import Aluno, Experimento_Pratico, Criacao_Aluno, CriacaoExperimento
 import json
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate 
 from django.contrib.auth import login as lg
-from .forms import ExpForm
 import matplotlib as plt
 import numpy as np
-#from sklearn.linear_model import LinearRegression 
 
 
+
+def naologado():
+    return HttpResponse('Você nao esta logado')
 
 def coef(x, y):
 	# number of observations/points
@@ -151,14 +152,22 @@ def dash(request):
 
 def newTeorico(request):
     if request.user.is_authenticated:
-        pass
+        formExp = Criacao_Aluno(request.POST or None)
+        
+        if formExp.is_valid():
+            formExp.save()
+
+        return render(request, 'add.html', {'formExp' : formExp})
+    naologado()
 
 
 
+    pass
 
-
-# def delTeorico():
-#     pass
+def delTeorico():
+    produto = Experimento_Pratico.objects.get(id=id)
+    produto.delete()
+    return HttpResponseRedirect("../../dash")
 
 
 
