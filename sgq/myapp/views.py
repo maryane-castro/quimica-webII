@@ -150,32 +150,15 @@ def dash(request):
 
 
 
-def newTeorico(request):
-    if request.user.is_authenticated:
-        pass
 
 
 
-
-
-# def delTeorico():
-#     pass
-
-
-
-# lista_teorico = []
-
-#     value = Experimento_Pratico.objects.all()
-#     for c in value:
-#         tempo_2 = c.concentracao_p * 0.52
-#         lista_teorico.append({"x": c.concentracao_p, "y":tempo_2})
-
-#     teorico = json.dumps(lista_teorico)'
 
 
 
 def naologado():
     return HttpResponse('Você nao esta logado')
+
 
 def newTeorico(request):
     if request.user.is_authenticated:
@@ -185,24 +168,16 @@ def newTeorico(request):
             formExp.save()
 
         return render(request, 'add.html', {'formExp' : formExp})
+    
     naologado()
 
 
-
-    pass
 
 def delTeorico():
     produto = Experimento_Pratico.objects.get(id=id)
     produto.delete()
     return HttpResponseRedirect("../../dash")
+    pass
 
 
 
-# lista_teorico = []
-
-#     value = Experimento_Pratico.objects.all()
-#     for c in value:
-#         tempo_2 = c.concentracao_p * 0.52
-#         lista_teorico.append({"x": c.concentracao_p, "y":tempo_2})
-
-#     teorico = json.dumps(lista_teorico)

@@ -68,7 +68,7 @@
         }
         .lacuna1{
             width: 30vw;
-            height: 15vh;
+            height: 35vh;
             background-color: #FFA1A1;
             margin: 30px 0 30px 0;
             display: flex;
@@ -125,8 +125,7 @@
                         <button style="display: block;">Add Pratico</button>
                         <button style="display: block;">Remove Pratico</button>
 
-                        <button style="display: block;">Add Teoria</button>
-                        <button style="display: block;">Remove Teoria</button>
+
                     </div>
                 </div>
                 
@@ -135,15 +134,16 @@
             <div id="item">
                 <div>   
                     <div class="lacuna1">
-                        <form method="POST">
+                        <form method="post" aria-required="false">
                             {% csrf_token %}
-                            {{form}}
+                    
+                            {{formExp.as_p}}
+                            <button style="margin-left: 15px;" type="submit">Salvar</button>
                         </form>
+            
+                        
                     </div>
-                    <div class="lacuna2">
-                        <button type="submit" style="display: block;">Salvar</button>
-                        <button type="submit" style="display: block;">Cancelar</button>
-                    </div>
+                    
                 </div>
             </div>
         </div>

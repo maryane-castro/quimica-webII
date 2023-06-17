@@ -16,8 +16,6 @@ class Experimento_Pratico(models.Model):
     concentracao_p = models.FloatField(default=None)
     categoria = models.ForeignKey(Aluno, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return self.experimento_p
 
 
 
@@ -28,7 +26,7 @@ class CriacaoAluno(ModelForm):
 
 
 
-class CriacaoExperimento:
+class CriacaoExperimento(ModelForm):
     class Meta:
         model = Experimento_Pratico
-        fields = ['temp_ebulicao_p', 'concentracao_p', 'categoria']
+        fields = ['experimento_p','temp_ebulicao_p', 'concentracao_p', 'categoria']
