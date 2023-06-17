@@ -122,31 +122,33 @@ def mean_squared_error(y_true, y_pred):
 
 
 
-def dash(request): 
+def dash(request):
     if request.user.is_authenticated:
+        # Verificar se existem experimentos no banco de dados
+        if Experimento_Pratico.objects.exists():
+            k_Raul, aux = k_raul()
+            k_Otimo, aux2 = k_otimo()
+            dados = teorico()
+            
+            value = Experimento_Pratico.objects.all()
+            concentracao = []
+            temp = []
 
-        k_Raul, aux = k_raul()     #y - array
-        k_Otimo, aux2 = k_otimo()   #y - array
-        dados = teorico()     #x, y
+            for c in value:
+                concentracao.append(c.concentracao_p)
+                temp.append(c.temp_ebulicao_p)
+            
+            k_Raul_json = json.dumps(k_Raul) 
+            k_Otimo_json = json.dumps(k_Otimo)
+            Dados_json = json.dumps(dados)
 
-        value = Experimento_Pratico.objects.all()
-        concentracao = []
-        temp = []
-
-        for c in value:
-            concentracao.append(c.concentracao_p)
-            temp.append(c.temp_ebulicao_p)
-
-        # erro_raul = mean_squared_error(100-np.array(temp), 0.52 * np.array(concentracao))
-        # erro_otimo = mean_squared_error(100-np.array(temp), k_Otimo * np.array(concentracao))
+            return render(request, 'dash.html', {"dados_json": Dados_json, "k_otimo": k_Otimo_json, "k_raul": k_Raul_json, "listas": Experimento_Pratico.objects.all()})
         
-        k_Raul_json = json.dumps(k_Raul) 
-        k_Otimo_json = json.dumps(k_Otimo)
-        Dados_json = json.dumps(dados)
-
-        return render(request, 'dash.html', {"dados_json":Dados_json, "k_otimo": k_Otimo_json, "k_raul" : k_Raul_json})
+        # Caso não existam experimentos, retornar uma mensagem de erro ou renderizar uma página vazia
+        return render(request, 'dash.html', {"dados_json": "[]", "k_otimo": "[]", "k_raul": "[]", "listas": []})
     
-    return HttpResponse('Vc precisa estar logado')
+    return HttpResponse('Você precisa estar logado')
+
 
 
 
@@ -173,11 +175,9 @@ def newTeorico(request):
 
 
 
-def delTeorico():
-    produto = Experimento_Pratico.objects.get(id=id)
-    produto.delete()
+def delTeorico(request, id):
+    lista = Experimento_Pratico.objects.get(experimento_p=id)
+    lista.delete()
     return HttpResponseRedirect("../../dash")
-    pass
-
 
 

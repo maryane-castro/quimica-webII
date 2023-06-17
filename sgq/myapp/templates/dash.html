@@ -76,6 +76,10 @@
             text-decoration: none;
         }
 
+        #dados{
+            margin-top: 3%;
+        }
+
         
 
 
@@ -85,14 +89,15 @@
 </head>
 
 <body>
+    <p style="text-align: center;">É necessário pelo menos 2 Expementos</p>
     <main>
+        
         <div class="main">
             <div id="title">
                 <div>
-                    <p style="margin-top: 25vh;">Menu</p>
+                    <p style="margin-top: 30vh;">Menu</p>
                     <div id="opcoes">
                         <button style="display: block;"><a href="{% url 'newTeorico' %}">Add Teorico</a></button>
-                        <button style="display: block;"><a href="#">Remove Teorico</a></button>
                     </div>
                 </div>
                 
@@ -104,6 +109,14 @@
                         <h1>Dashboard ...</h1>
                         <canvas id="myChart" width="700" height="300"></canvas>
                       </div>
+                      <br>
+                      <hr>
+                      <div id="dados">
+                        {% for lista in listas %}
+                        <p>{{ lista.experimento_p }} <a href="{% url 'delTeorico' lista.experimento_p %}">Apagar Expemento</a></p>
+                        {% endfor %}
+                      </div>
+                        
                 </div>
               
             </div>
@@ -113,6 +126,8 @@
     <!-- erro1 {{erro1}}
     erro2 {{erro2}}    
         {{dados_json}}-->
+
+        
 
 
     <script>

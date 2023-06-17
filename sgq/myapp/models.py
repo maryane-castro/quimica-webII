@@ -12,7 +12,7 @@ class Aluno(models.Model):
 
 class Experimento_Pratico(models.Model):
     experimento_p = models.IntegerField(primary_key=True)
-    temp_ebulicao_p = models.FloatField()
+    temp_ebulicao_p = models.FloatField(default=None)
     concentracao_p = models.FloatField(default=None)
     categoria = models.ForeignKey(Aluno, on_delete=models.CASCADE)
 

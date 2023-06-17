@@ -13,7 +13,7 @@ urlpatterns = [
 
     path('newTeorico', views.newTeorico, name='newTeorico'),
 
-    path('delTeorico', views.delTeorico, name='delTeorico')
+    path('delTeorico/<int:id>/', views.delTeorico, name='delTeorico')
 
 
 
