@@ -1,35 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from .models import Aluno, Experimento_Pratico, Criacao_Aluno, CriacaoExperimento
+from .models import Aluno, Experimento_Pratico, CriacaoAluno, CriacaoExperimento
 import json
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate 
 from django.contrib.auth import login as lg
 import matplotlib as plt
 import numpy as np
-
-
-
-def naologado():
-    return HttpResponse('Você nao esta logado')
-
-def coef(x, y):
-	# number of observations/points
-	n = np.size(x)
-
-	# mean of x and y vector
-	m_x = np.mean(x)
-	m_y = np.mean(y)
-
-	# calculating cross-deviation and deviation about x
-	SS_xy = np.sum(y*x) - n*m_y*m_x
-	SS_xx = np.sum(x*x) - n*m_x*m_x
-
-	# calculating regression coefficients
-	b_1 = SS_xy / SS_xx
-	b_0 = m_y - b_1*m_x
-
-	return (b_0, b_1)
+#from sklearn.linear_model import LinearRegression 
 
 
 
@@ -65,7 +43,27 @@ def login(request):
             return HttpResponse('erro')
 
 
+
 #plataform
+
+
+def coef(x, y): # Vai receber a concentração e a variação de temperatura 
+	# número de observações/pontos
+	n = np.size(x)
+
+	# média dos vetores x e y
+	m_x = np.mean(x)
+	m_y = np.mean(y)
+
+	# calculando desvio cruzado e desvio sobre x
+	SS_xy = np.sum(y*x) - n*m_y*m_x
+	SS_xx = np.sum(x*x) - n*m_x*m_x
+
+	# cálculo de coeficientes de regressão
+	b_1 = SS_xy / SS_xx
+	b_0 = m_y - b_1*m_x
+
+	return (b_0, b_1)
 
 def k_raul():
     value = Experimento_Pratico.objects.all()
@@ -90,17 +88,17 @@ def k_otimo():
 
     for c in value:
         concentracao.append([c.concentracao_p])
-        temp.append(c.temp_ebulicao_p)
+        temp.append([c.temp_ebulicao_p])
 
     concentracao = np.array(concentracao)
     temp = np.array(temp)
-    reg = coef(concentracao, 100-temp) # só esse
+    reg1, reg2 = coef(concentracao, 100-temp) # só esse
 
     lista_dados = []
     for i in value:
-        lista_dados.append({"x": i.concentracao_p, "y": (reg[0] * i.concentracao_p) + reg[1]})
+        lista_dados.append({"x": i.concentracao_p, "y": (reg2 * i.concentracao_p) + reg1}) # reg1 - intercept_ // reg2 - coef_
     
-    aux = (reg[0] * i.concentracao_p) + reg[1]
+    aux = (reg2 * i.concentracao_p) + reg1
     return lista_dados, aux
     
 
@@ -110,7 +108,7 @@ def teorico():  #CERTOOO
     lista_dados = []
 
     for c in value:
-        lista_dados.append({"x": c.concentracao_p, "y" : -c.temp_ebulicao_p})
+        lista_dados.append({"x": c.concentracao_p, "y" : 100-c.temp_ebulicao_p})
 
     return lista_dados
 
@@ -121,6 +119,8 @@ def mean_squared_error(y_true, y_pred):
     for yi, yj in zip(y_true, y_pred):
         e += (yi - yj)**2
     return e
+
+
 
 def dash(request): 
     if request.user.is_authenticated:
@@ -152,7 +152,34 @@ def dash(request):
 
 def newTeorico(request):
     if request.user.is_authenticated:
-        formExp = Criacao_Aluno(request.POST or None)
+        pass
+
+
+
+
+
+# def delTeorico():
+#     pass
+
+
+
+# lista_teorico = []
+
+#     value = Experimento_Pratico.objects.all()
+#     for c in value:
+#         tempo_2 = c.concentracao_p * 0.52
+#         lista_teorico.append({"x": c.concentracao_p, "y":tempo_2})
+
+#     teorico = json.dumps(lista_teorico)'
+
+
+
+def naologado():
+    return HttpResponse('Você nao esta logado')
+
+def newTeorico(request):
+    if request.user.is_authenticated:
+        formExp = CriacaoExperimento(request.POST or None)
         
         if formExp.is_valid():
             formExp.save()

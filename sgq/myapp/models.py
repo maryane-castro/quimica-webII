@@ -21,7 +21,7 @@ class Experimento_Pratico(models.Model):
 
 
 
-class Criacao_Aluno(ModelForm):
+class CriacaoAluno(ModelForm):
     class Meta:
         model = Aluno
         fields = ['nome']
