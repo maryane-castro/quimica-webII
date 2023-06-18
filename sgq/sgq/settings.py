@@ -119,6 +119,21 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
+# settings.py
+
+# ...
+
+# Defina o diretório base onde seus arquivos estáticos serão coletados
+STATIC_ROOT = '/home/haise/Documentos/GitHub/sgq/sgq/myapp/static'
+
+# URL usada para referenciar os arquivos estáticos no código HTML
+# Diretórios adicionais onde você pode colocar arquivos estáticos específicos do aplicativo
+STATICFILES_DIRS = [
+    '/home/haise/Documentos/GitHub/sgq/sgq/myapp/static',
+    # '/home/seu_usuario/seu_projeto/app2/static/',
+]
+
+# ...
 
 
 
