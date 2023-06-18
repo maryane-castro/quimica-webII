@@ -119,7 +119,6 @@ USE_TZ = True
 STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-<<<<<<< HEAD
 # settings.py
 
 # ...
@@ -130,8 +129,6 @@ STATIC_URL = 'static/'
 # Diretórios adicionais onde você pode colocar arquivos estáticos específicos do aplicativo
 
 # ...
-=======
->>>>>>> parent of 1e3cbe0 (Update settings.py)
 
 
 
