@@ -33,7 +33,7 @@
             
             height: 75vh;
             width: 67vh;
-            background-color: #FF8686;
+            background-color: #4DBCC4;
 
             font-size: 2.5em;
             color: white;
@@ -71,7 +71,7 @@
         .lacuna1{
             width: 30vw;
             height: 35vh;
-            background-color: #FFA1A1;
+            background-color: #4DBCC4;
             margin: 30px 0 30px 0;
             display: flex;
             align-items: center;
@@ -94,7 +94,7 @@
         .lacuna2 > button{
             width: 15vw;
             height: 5vh;
-            background-color: #FFA1A1;
+            background-color: #4DBCC4;
             border-radius: 10px;
         }
 
@@ -111,7 +111,14 @@
 
 
         
-
+        #sos{
+            color: white;
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 10px;
+            width: 8vw;
+            height: 4vh;
+        }
 
 
 
@@ -141,7 +148,7 @@
                             {% csrf_token %}
                     
                             {{formExp.as_p}}
-                            <button style="margin-left: 15px;" type="submit">Salvar</button>
+                            <button id="sos" style="margin-left: 15px;" type="submit">Salvar</button>
                         </form>
             
                         
